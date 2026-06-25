@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
+    "dayjs": "^1.11.21",
     "flowbite": "^4.0.1",
     "lucide-react": "^1.3.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.6",
     "react-hook-form": "^7.76.0",
     "sonner": "^2.0.7",
+    "sweetalert2": "^11.26.25",
     "tailwindcss": "^4.2.4",
     "zustand": "^5.0.13"
   },

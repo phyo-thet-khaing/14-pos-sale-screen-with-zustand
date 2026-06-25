@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 
 const ProductList = () => {
   const { activeCategory } = useCategoryStore();
-  const { filterProducts, q } = useProductStore();
+  const { filterProducts, q,  } = useProductStore();
 
   // const filterProducts = products.filter(
   //   (el) => activeCategory === "All" || el.category === activeCategory,
@@ -26,7 +26,7 @@ const ProductList = () => {
         </div>
       ) : (
         filterProducts(activeCategory, q).map((el) => (
-          <ProductCard key={el.id} products={el} />
+          <ProductCard key={el.id} product={el} />
         ))
       )}
     </div>
