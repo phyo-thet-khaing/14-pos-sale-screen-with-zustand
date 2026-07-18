@@ -1,26 +1,52 @@
+import useCategoryStore from "../stores/useCategoryStore";
 import useProductStore from "../stores/useProductStore";
-import useCategoryStore from "./../stores/useCategoryStore";
 import ProductSearchInput from "./ProductSearchInput";
 
 const InventoryHeader = () => {
   const { activeCategory } = useCategoryStore();
-
   const { filterProducts, q } = useProductStore();
 
-  return (
-    <div className="grid flex-1 grid-cols-7 gap-4 px-5">
-      <div className="col-span-1"></div>
-      <div className="relative col-span-6">
-        <div className="flex items-center justify-between py-4">
-          <h2 className="text-xl text-gray-800 font-heading dark:text-white">
-            Product List{" "}
-            <span className="text-sm ">
-              ({filterProducts(activeCategory, q).length})
-            </span>
-          </h2>
+  const productCount = filterProducts(activeCategory, q).length;
 
-          <ProductSearchInput />
+  return (
+    <div className="px-4 md:px-5">
+      <div className="grid gap-4 md:grid-cols-4 lg:grid-cols-7">
+        
+        {/* Category space */}
+        <div className="hidden md:block md:col-span-1" />
+
+        {/* Product Header */}
+        <div className="md:col-span-3 lg:col-span-6">
+          <div className="
+            flex
+            flex-col
+            gap-3
+            py-4
+
+            sm:flex-row
+            sm:items-center
+            sm:justify-between
+          ">
+            <h2 className="
+              text-lg
+              font-heading
+              font-semibold
+              text-gray-800
+              dark:text-white
+              sm:text-xl
+            ">
+              Product List{" "}
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                ({productCount})
+              </span>
+            </h2>
+
+            <div className="w-full sm:w-auto">
+              <ProductSearchInput />
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   );

@@ -1,29 +1,54 @@
-import useVoucherStore from "./../stores/useVoucherStore";
+import useVoucherStore from "../stores/useVoucherStore";
 
 const VoucherInfo = () => {
-  // Generate voucher number: prefix + random
-
   const { information } = useVoucherStore();
 
+  const inputClass = `
+    w-full
+    sm:w-48
+
+    rounded-lg
+    border
+    border-gray-300
+
+    bg-white
+
+    px-2
+    py-1.5
+
+    text-right
+    font-mono
+    text-sm
+    text-gray-800
+
+    outline-none
+
+    dark:border-gray-600
+    dark:bg-gray-700
+    dark:text-white
+  `;
+
   return (
-    <div className="flex flex-col items-end gap-2">
+    <div className="flex flex-col items-end w-full gap-2 ">
       <input
         type="text"
         value={information.voucherId}
-        className="w-48 px-2 py-1 font-mono text-sm border rounded text-end"
         readOnly
+        className={inputClass}
       />
+
       <input
         type="text"
         value={information.date}
-        className="w-48 px-2 py-1 font-mono text-sm border rounded text-end"
         readOnly
+        className={inputClass}
       />
+
       <input
         type="text"
         value={information.time}
-        className="w-48 px-2 py-1 font-mono text-sm border rounded text-end"
         readOnly
+        className={inputClass}
       />
     </div>
   );

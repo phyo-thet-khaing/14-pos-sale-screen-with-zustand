@@ -1,34 +1,54 @@
 import { SearchIcon } from "lucide-react";
-import { useRef } from "react";
 import useProductStore from "../stores/useProductStore";
 
 const ProductSearchInput = () => {
-  // const [keyword, setKeyword] = useState("");
-
   const { setQ } = useProductStore();
 
-  const inputRef = useRef();
-
-  const handleChange = () => {
-    // setKeyword(e.target.value);
-
-    // console.log(inputRef.current.value);
-    setQ(inputRef.current.value);
+  const handleChange = (e) => {
+    setQ(e.target.value);
   };
 
   return (
-    <div id="search-form">
+    <div className="w-full sm:w-64">
       <div className="relative">
-        <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
-          <SearchIcon className="text-gray-500 size-4 dark:text-gray-300" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+          <SearchIcon className="size-4 text-gray-500 dark:text-gray-300" />
         </div>
 
         <input
           type="search"
-          ref={inputRef}
           onChange={handleChange}
-          className="block w-full px-3 py-1 text-gray-800 placeholder-gray-400 bg-white border border-gray-300 rounded-lg ps-9 dark:bg-gray-600 dark:border-gray-500 dark:text-white dark:placeholder-gray-300"
-          placeholder="Search"
+          placeholder="Search products..."
+          className="
+            block
+            w-full
+            rounded-lg
+            border
+            border-gray-300
+
+            bg-white
+
+            px-3
+            py-2
+            pl-9
+
+            text-sm
+            text-gray-800
+
+            placeholder-gray-400
+
+            outline-none
+
+            focus:border-blue-500
+            focus:ring-2
+            focus:ring-blue-200
+
+            dark:border-gray-600
+            dark:bg-gray-700
+            dark:text-white
+            dark:placeholder-gray-300
+            dark:focus:ring-blue-800
+          "
         />
       </div>
     </div>

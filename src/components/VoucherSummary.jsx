@@ -1,28 +1,44 @@
-import useVoucherStore from "./../stores/useVoucherStore";
+import useVoucherStore from "../stores/useVoucherStore";
+
 const VoucherSummary = () => {
-  const { items, getTotal, getTax, getNetTotal } = useVoucherStore();
+  const { getTotal, getTax, getNetTotal } = useVoucherStore();
 
   return (
-    <div className="p-5" id="summary">
-      <table className="w-full font-mono text-sm text-end">
+    <div
+      id="summary"
+      className="p-4 border-t border-gray-200  dark:border-gray-600 sm:p-5"
+    >
+      <table className="w-full font-mono text-sm ">
         <tbody>
+          {/* Subtotal */}
           <tr>
-            <td className="text-gray-500 dark:text-gray-300">Subtotal:</td>
-            <td className="text-gray-800 dark:text-white">
+            <td className="py-1 text-gray-500  dark:text-gray-300">
+              Subtotal:
+            </td>
+
+            <td className="py-1 text-right text-gray-800  dark:text-white">
               {getTotal().toFixed(2)}
             </td>
           </tr>
 
-          <tr className="text-xs text-end">
-            <td className="text-gray-500 dark:text-gray-300">Tax (5%):</td>
-            <td className="text-gray-800 dark:text-white">
+          {/* Tax */}
+          <tr>
+            <td className="py-1 text-gray-500  dark:text-gray-300">
+              Tax (5%):
+            </td>
+
+            <td className="py-1 text-right text-gray-800  dark:text-white">
               {getTax().toFixed(2)}
             </td>
           </tr>
 
-          <tr className="text-xs text-end">
-            <td className="text-gray-500 dark:text-gray-300">Net Total:</td>
-            <td className="text-gray-800 dark:text-white">
+          {/* Net Total */}
+          <tr>
+            <td className="pt-3 font-bold text-gray-800  dark:text-white">
+              Net Total:
+            </td>
+
+            <td className="pt-3 text-lg font-bold text-right text-blue-600  dark:text-blue-400">
               {getNetTotal().toFixed(2)}
             </td>
           </tr>

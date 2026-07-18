@@ -1,6 +1,6 @@
 import { Minus, Plus } from "lucide-react";
 import Swal from "sweetalert2";
-import useVoucherStore from "./../stores/useVoucherStore";
+import useVoucherStore from "../stores/useVoucherStore";
 
 const VoucherItem = ({
   item: {
@@ -42,37 +42,41 @@ const VoucherItem = ({
   };
 
   return (
-    <div className="px-5 py-2 border-b border-gray-300 order-card dark:border-gray-600">
-      <div className="flex items-start justify-between mb-2 dark:text-white">
-        <p className="w-1/2 text-sm">{title}</p>
+    <div className="px-4 py-3 border-b border-gray-300  dark:border-gray-600">
+      {/* Product row */}
+      <div className="flex items-center justify-between gap-3 mb-3  dark:text-white">
+        <p className="w-1/2 text-sm font-medium truncate ">{title}</p>
 
         <div className="flex items-center gap-2">
           <button
             onClick={handleSub}
-            className="p-1 active:scale-90 bg-blue-100 border border-blue-400 rounded-lg dark:bg-blue-500 dark:border-blue-300 hover:bg-blue-200 dark:hover:bg-blue-400"
+            className="flex items-center justify-center transition bg-blue-100 border border-blue-400 rounded-lg  h-7 w-7 active:scale-90 hover:bg-blue-200 dark:border-blue-300 dark:bg-blue-500 dark:hover:bg-blue-400"
           >
-            <Minus size={12} />
+            <Minus size={14} />
           </button>
 
-          <p className="w-5 font-mono text-sm text-end">{quantity}</p>
+          <span className="w-6 font-mono text-sm text-center">{quantity}</span>
 
           <button
             onClick={handleAdd}
-            className="p-1 active:scale-90 bg-blue-100 border border-blue-400 rounded-lg dark:bg-blue-500 dark:border-blue-300 hover:bg-blue-200 dark:hover:bg-blue-400"
+            className="flex items-center justify-center transition bg-blue-100 border border-blue-400 rounded-lg  h-7 w-7 active:scale-90 hover:bg-blue-200 dark:border-blue-300 dark:bg-blue-500 dark:hover:bg-blue-400"
           >
-            <Plus size={12} />
+            <Plus size={14} />
           </button>
         </div>
       </div>
 
-      <div className="flex justify-between mb-2 text-gray-400">
-        <div className="flex items-center gap-2">
-          <p className="font-mono text-sm">{quantity}</p>
-          <p>x</p>
-          <p className="font-mono text-sm">{price}</p>
+      {/* Price row */}
+      <div className="flex justify-between text-sm text-gray-500  dark:text-gray-400">
+        <div className="flex items-center gap-2 font-mono">
+          <span>{quantity}</span>
+          <span>x</span>
+          <span>{price}</span>
         </div>
 
-        <p className="font-mono text-sm">{quantity * price}</p>
+        <span className="font-mono text-gray-800 dark:text-white">
+          {quantity * price}
+        </span>
       </div>
     </div>
   );

@@ -1,32 +1,32 @@
+import useCategoryStore from "../stores/useCategoryStore";
 import useProductStore from "../stores/useProductStore";
-import useCategoryStore from "./../stores/useCategoryStore";
 import ProductCard from "./ProductCard";
 
 const ProductList = () => {
   const { activeCategory } = useCategoryStore();
-  const { filterProducts, q,  } = useProductStore();
+  const { filterProducts, q } = useProductStore();
 
-  // const filterProducts = products.filter(
-  //   (el) => activeCategory === "All" || el.category === activeCategory,
-  // );
+  const products = filterProducts(activeCategory, q);
+
   return (
-    <div className="grid grid-cols-3 gap-5 ">
-      {filterProducts(activeCategory, q).length === 0 ? (
-        <div className="col-span-full ">
-          <div className="flex flex-col items-center justify-center product-card">
+    <div className="grid grid-cols-1 gap-4  sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+      {products.length === 0 ? (
+        <div className="col-span-full">
+          <div className="flex flex-col items-center justify-center py-10 ">
             <img
-              src="../../public/Images/Empty-amico.svg"
-              alt="Empty-amico"
-              className="p-5 h-60 w-60"
+              src="/Images/Empty-amico.svg"
+              alt="No products"
+              className="w-40 h-40  sm:h-60 sm:w-60"
             />
-            <p className="text-sm text-center text-gray-500">
-              There is no products available
+
+            <p className="mt-4 text-sm text-center text-gray-500  dark:text-gray-400">
+              There are no products available
             </p>
           </div>
         </div>
       ) : (
-        filterProducts(activeCategory, q).map((el) => (
-          <ProductCard key={el.id} product={el} />
+        products.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))
       )}
     </div>

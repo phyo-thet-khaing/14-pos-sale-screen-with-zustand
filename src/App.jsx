@@ -7,43 +7,46 @@ import VoucherSection from "./components/VoucherSection";
 const App = () => {
   const [theme, setTheme] = useState("light");
 
-  // Load saved theme
   useEffect(() => {
     const savedTheme = localStorage.getItem("color-theme");
 
-    if (savedTheme === "dark") {
-      document.documentElement.classList.add("dark");
-      setTheme("dark");
-    } else if (savedTheme === "light") {
-      document.documentElement.classList.remove("dark");
-      setTheme("light");
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      document.documentElement.classList.add("dark");
-      setTheme("dark");
-    }
+    const isDark =
+      savedTheme === "dark" ||
+      (!savedTheme &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+    document.documentElement.classList.toggle("dark", isDark);
+
+    setTheme(isDark ? "dark" : "light");
   }, []);
 
-  // Toggle function (we pass this to Header)
   const toggleTheme = () => {
-    if (theme === "light") {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("color-theme", "dark");
-      setTheme("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("color-theme", "light");
-      setTheme("light");
-    }
+    const nextTheme = theme === "light" ? "dark" : "light";
+
+    document.documentElement.classList.toggle("dark", nextTheme === "dark");
+
+    localStorage.setItem("color-theme", nextTheme);
+
+    setTheme(nextTheme);
   };
 
   return (
-    <main className="flex flex-col h-screen bg-white dark:bg-gray-900">
+    <main className="flex flex-col min-h-screen  bg-gray-50 dark:bg-gray-900">
       <Header theme={theme} toggleTheme={toggleTheme} />
-      <div className="grid flex-1 grid-cols-7">
-        <InventorySection />
-        <VoucherSection />
+
+      <div className="grid flex-1 grid-cols-1 gap-4 p-3  sm:p-4 lg:grid-cols-7">
+        {/* Inventory */}
+        <div className=" lg:col-span-5">
+          <InventorySection />
+        </div>
+
+        {/* Voucher */}
+        <div className=" lg:col-span-2">
+          <VoucherSection />
+        </div>
       </div>
-      <Toaster position="bottom-right" richColors={true} />
+
+      <Toaster position="bottom-right" richColors />
     </main>
   );
 };

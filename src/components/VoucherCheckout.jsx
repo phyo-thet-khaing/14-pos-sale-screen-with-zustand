@@ -1,4 +1,4 @@
-import useVoucherStore from "./../stores/useVoucherStore";
+import useVoucherStore from "../stores/useVoucherStore";
 
 const VoucherCheckout = () => {
   const { information, items, reset } = useVoucherStore();
@@ -7,45 +7,89 @@ const VoucherCheckout = () => {
     console.log({ items, information });
     reset();
   };
+
   return (
-    <div className="px-5 mt-auto">
-      <div className="flex justify-end gap-4 px-5 mb-1">
-        <div className="flex items-center mb-4">
+    <div className="mt-auto px-4 sm:px-5">
+      <div
+        className="
+          flex
+          flex-col
+          gap-2
+          mb-4
+
+          sm:flex-row
+          sm:justify-end
+          sm:gap-4
+        "
+      >
+        {/* Dine In */}
+        <label className="flex items-center gap-2 cursor-pointer">
           <input
-            id="default-radio-1"
             type="radio"
-            defaultValue
-            name="default-radio"
-            className="w-4 h-4 border rounded-full appearance-none text-neutral-primary border-default-medium bg-neutral-secondary-medium checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border-default"
+            name="order-type"
+            value="dine-in"
+            className="
+              h-4
+              w-4
+              accent-blue-600
+            "
           />
-          <label
-            htmlFor="default-radio-1"
-            className="text-sm font-medium select-none ms-2 text-heading"
-          >
+
+          <span className="text-sm text-gray-700 dark:text-gray-200">
             Dine In
-          </label>
-        </div>
-        <div className="flex items-center mb-4">
+          </span>
+        </label>
+
+
+        {/* Take Away */}
+        <label className="flex items-center gap-2 cursor-pointer">
           <input
-            defaultChecked
-            id="default-radio-2"
             type="radio"
-            defaultValue
-            name="default-radio"
-            className="w-4 h-4 border rounded-full appearance-none text-neutral-primary border-default-medium bg-neutral-secondary-medium checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border-default"
+            name="order-type"
+            value="take-away"
+            defaultChecked
+            className="
+              h-4
+              w-4
+              accent-blue-600
+            "
           />
-          <label
-            htmlFor="default-radio-2"
-            className="text-sm font-medium select-none ms-2 text-heading"
-          >
+
+          <span className="text-sm text-gray-700 dark:text-gray-200">
             Take Away
-          </label>
-        </div>
+          </span>
+        </label>
       </div>
+
+
       <button
         onClick={handleClick}
         type="button"
-        className="w-full mb-5 text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+        className="
+          mb-5
+          w-full
+
+          rounded-lg
+          bg-blue-600
+
+          px-4
+          py-3
+
+          text-sm
+          font-medium
+          text-white
+
+          transition
+
+          hover:bg-blue-700
+          active:scale-[0.98]
+
+          focus:outline-none
+          focus:ring-4
+          focus:ring-blue-300
+
+          dark:focus:ring-blue-800
+        "
       >
         Check Out
       </button>
